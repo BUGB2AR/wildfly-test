@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Pessoa</title>
+<style type="text/css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h4, h6 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            transition: border-color 0.15s ease-in-out;
+        }
+        .form-control:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
+</h:head>
+<body>
+    <f:metadata>
+        <f:viewParam name="id" value="#{pessoaController.pessoa.id}" />
+        <f:event type="preRenderView" listener="#{pessoaController.carregarPessoa}" />
+    </f:metadata>
+
+    <div class="container">
+        <h2>#{empty pessoaController.pessoa.id ? 'Cadastro' : 'Edição'} de Pessoa</h2>
+        <h4>Preencha os dados da pessoa e seu endereço:</h4>
+
+        <h:form id="formPessoa">
+            <h6>Informações da Pessoa</h6>
+            <div class="form-group">
+                <h:outputLabel for="nome" value="Nome *" />
+                <h:inputText id="nome" value="#{pessoaController.pessoa.nome}" styleClass="form-control" required="true" />
+                <h:message for="nome" style="color:red" />
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="dataNascimento" value="Data de Nascimento *" />
+                <h:inputText id="dataNascimento" value="#{pessoaController.pessoa.dataNascimento}" styleClass="form-control" required="true">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+                <h:message for="dataNascimento" style="color:red" />
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="sexo" value="Sexo *" />
+                <h:selectOneMenu id="sexo" value="#{pessoaController.pessoa.sexo}" styleClass="form-control" required="true">
+                    <f:selectItem itemValue="" itemLabel="Selecione..." />
+                    <f:selectItem itemValue="M" itemLabel="Masculino" />
+                    <f:selectItem itemValue="F" itemLabel="Feminino" />
+                    <f:selectItem itemValue="O" itemLabel="Outro" />
+                </h:selectOneMenu>
+                <h:message for="sexo" style="color:red" />
+            </div>
+
+            <h6>Endereço</h6>
+            <div class="form-group">
+                <h:outputLabel for="logradouro" value="Logradouro *" />
+                <h:inputText id="logradouro" value="#{pessoaController.endereco.logradouro}" styleClass="form-control" required="true" />
+                <h:message for="logradouro" style="color:red" />
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="numero" value="Número *" />
+                <h:inputText id="numero" value="#{pessoaController.endereco.numero}" styleClass="form-control" required="true" />
+                <h:message for="numero" style="color:red" />
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="cidade" value="Cidade *" />
+                <h:inputText id="cidade" value="#{pessoaController.endereco.cidade}" styleClass="form-control" required="true" />
+                <h:message for="cidade" style="color:red" />
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="estado" value="Estado *" />
+                <h:inputText id="estado" value="#{pessoaController.endereco.estado}" styleClass="form-control" required="true" />
+                <h:message for="estado" style="color:red" />
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="cep" value="CEP *" />
+                <h:inputText id="cep" value="#{pessoaController.endereco.cep}" styleClass="form-control" required="true" />
+                <h:message for="cep" style="color:red" />
+            </div>
+
+            <h:commandButton value="Salvar" action="#{pessoaController.salvar}" styleClass="btn-success" />
+        </h:form>
+    </div>
+</body>
+</html>

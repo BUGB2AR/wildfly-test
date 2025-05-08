@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Lista de Pessoas</title>
+	<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f8f9fa;
+	padding: 20px;
+}
+
+.container {
+	max-width: 900px;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th, td {
+	padding: 12px;
+	border: 1px solid #dee2e6;
+	text-align: left;
+}
+
+th {
+	background-color: #007bff;
+	color: white;
+}
+
+.btn {
+	padding: 6px 12px;
+	border-radius: 4px;
+	font-size: 14px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-right: 5px;
+}
+
+.btn-edit {
+	background-color: #ffc107;
+	color: black;
+}
+
+.btn-delete {
+	background-color: #dc3545;
+	color: white;
+}
+
+.btn-add {
+	background-color: #28a745;
+	color: white;
+	float: right;
+	margin-bottom: 10px;
+}
+</style>
+</h:head>
+<body>
+	<div class="container">
+		<h2>Lista de Pessoas</h2>
+		<h:form>
+			<h:commandLink value="Adicionar Nova Pessoa"
+				action="cadastro.xhtml?faces-redirect=true" styleClass="btn btn-add" />
+			<h:dataTable value="#{pessoaController.pessoas}" var="pessoa"
+				styleClass="table">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+                    #{pessoa.id}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+                    #{pessoa.nome}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Sexo</f:facet>
+                    #{pessoa.sexo}
+                </h:column>
+				<h:column>
+					<f:facet name="header">Data de Nascimento</f:facet>
+					<h:outputText value="#{pessoa.dataNascimento}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ações</f:facet>
+					<h:link outcome="cadastro" value="Editar" styleClass="btn btn-edit">
+						<f:param name="id" value="#{pessoa.id}" />
+					</h:link>
+					<h:commandLink value="Excluir"
+						action="#{pessoaController.excluir(pessoa.id)}"
+						styleClass="btn btn-delete"
+						onclick="return confirm('Tem certeza que deseja excluir?');" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+</body>
+</html>

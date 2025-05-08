@@ -1,0 +1,107 @@
+/* Estilo geral do corpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabeçalho */
+.header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    padding: 1rem 0;
+}
+
+/* Navbar */
+.navbar {
+    margin-bottom: 1rem;
+}
+
+.navbar .nav-link {
+    font-weight: 500;
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #0056b3 !important;
+}
+
+/* Botões */
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #0056b3;
+}
+
+/* Formulários */
+form {
+    margin-top: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+select {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Rodapé */
+footer {
+    padding: 1rem;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #343a40;
+}
+
+/* Cards (ex: lista de pessoas) */
+.card {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+/* Tabela personalizada */
+.table-custom {
+    background-color: white;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.table-custom th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table-custom td, .table-custom th {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+    }
+}
